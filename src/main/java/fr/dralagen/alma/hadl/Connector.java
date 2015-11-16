@@ -8,9 +8,9 @@ import java.util.Observer;
  *
  * @author dralagen
  */
-public class Connector implements Observer{
+public class Connector implements Observer {
     private ProvidedPort to;
-    private RequiredPort from;
+    private final RequiredPort from;
 
     public Connector(RequiredPort from, ProvidedPort to) {
         this.to = to;
@@ -20,8 +20,10 @@ public class Connector implements Observer{
     }
 
     public void update(Observable o, Object arg) {
-        if (o == from) {
-            from.receive(to.receive(arg));
-        }
+            if ( o == from ) {
+                String response = (String) to.receive(arg);
+                from.receive(response);
+                System.out.println(response);
+            }
     }
 }

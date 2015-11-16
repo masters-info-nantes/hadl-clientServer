@@ -23,5 +23,6 @@ public class ClientServerConfiguration implements Configuration {
 
         Client client = new Client();
         ClientServerConfiguration clientServer = new ClientServerConfiguration(client, new Server());
+        System.out.println("main : " + client.executeRequest("koin"));
     }
 }

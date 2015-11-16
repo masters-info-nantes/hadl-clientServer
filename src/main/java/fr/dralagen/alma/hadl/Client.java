@@ -16,4 +16,8 @@ public class Client extends AtomicComponent {
     public SendRequest getRequest() {
         return request;
     }
+
+    public String executeRequest(String req) {
+        return request.sendRequest(req);
+    }
 }

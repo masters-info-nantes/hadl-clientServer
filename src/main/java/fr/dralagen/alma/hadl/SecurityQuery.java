@@ -5,7 +5,11 @@ package fr.dralagen.alma.hadl;
  *
  * @author dralagen
  */
-public class SecurityQuery implements Connector {
+public class SecurityQuery extends Connector {
     SecurityManagement securityManagement;
     CheckQuery checkQuery;
+
+    public SecurityQuery(RequiredPort from, ProvidedPort to) {
+        super(from, to);
+    }
 }

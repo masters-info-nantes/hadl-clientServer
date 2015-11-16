@@ -5,5 +5,8 @@ package fr.dralagen.alma.hadl;
  *
  * @author dralagen
  */
-public abstract class ProvidedPort implements Port {
+public class ProvidedPort implements Port {
+    public Object receive(Object arg) {
+        return null;
+    }
 }

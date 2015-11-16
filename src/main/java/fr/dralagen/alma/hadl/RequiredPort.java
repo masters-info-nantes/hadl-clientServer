@@ -9,4 +9,8 @@ import java.util.Observable;
  */
 public abstract class RequiredPort extends Observable implements Port  {
 
+    public Object receive(Object arg) {
+        return null;
+    }
+
 }

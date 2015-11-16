@@ -6,4 +6,5 @@ package fr.dralagen.alma.hadl;
  * @author dralagen
  */
 public class SecurityManagement extends ProvidedPort {
+
 }

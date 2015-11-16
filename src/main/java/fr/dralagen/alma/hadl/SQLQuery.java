@@ -5,7 +5,11 @@ package fr.dralagen.alma.hadl;
  *
  * @author dralagen
  */
-public class SQLQuery implements Connector {
+public class SQLQuery extends Connector {
     DBQuery dbQuery;
     QueryD queryD;
+
+    public SQLQuery(RequiredPort from, ProvidedPort to) {
+        super(from, to);
+    }
 }

@@ -6,4 +6,16 @@ package fr.dralagen.alma.hadl;
  * @author dralagen
  */
 public class SendRequest extends RequiredPort {
+    String response;
+    public String sendRequest(String req) {
+        setChanged();
+        notifyObservers(req);
+
+        return response;
+    }
+
+    public synchronized Object receive(Object arg) {
+        response = (String) arg;
+        return response;
+    }
 }
