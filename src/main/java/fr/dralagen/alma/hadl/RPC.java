@@ -5,7 +5,9 @@ package fr.dralagen.alma.hadl;
  *
  * @author dralagen
  */
-public class RPC implements Connector {
-    SendRequest sendRequest;
-    ReceiveRequest receiveRequest;
+public class RPC extends Connector {
+
+    public RPC(RequiredPort from, ProvidedPort to) {
+        super(from, to);
+    }
 }

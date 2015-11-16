@@ -6,4 +6,5 @@ package fr.dralagen.alma.hadl;
  * @author dralagen
  */
 public interface Port {
+    Object receive(Object arg);
 }

@@ -7,6 +7,13 @@ package fr.dralagen.alma.hadl;
  */
 public class Client extends AtomicComponent {
 
-    SendRequest request;
+    private SendRequest request;
 
+    public Client() {
+        this.request = new SendRequest();
+    }
+
+    public SendRequest getRequest() {
+        return request;
+    }
 }
