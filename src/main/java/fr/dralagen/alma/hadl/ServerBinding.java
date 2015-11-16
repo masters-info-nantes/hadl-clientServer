@@ -6,6 +6,5 @@ package fr.dralagen.alma.hadl;
  * @author dralagen
  */
 public class ServerBinding  implements Binding {
-    ConnectionManager connectionManager;
     ExternalSocket connectionManagerRequest;
 }

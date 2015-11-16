@@ -7,10 +7,7 @@ package fr.dralagen.alma.hadl;
  */
 public class Server extends Component {
 
-//    ConnectionManager connectionManager;
-//    SecurityManager securityManager;
-//    DataBase dataBase;
-
     ReceiveRequest request;
-    ServerBinding binding;
+
+    ServerConfigurationBinding binding;
 }
