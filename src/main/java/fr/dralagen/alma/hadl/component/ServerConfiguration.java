@@ -7,7 +7,7 @@ import fr.dralagen.alma.hadl.binding.ServerBinding;
  *
  * @author dralagen
  */
-public class ServerConfiguration implements Configuration {
+public class ServerConfiguration extends Configuration {
 
     private ConnectionManager connectionManager;
     private SecurityManager securityManager;

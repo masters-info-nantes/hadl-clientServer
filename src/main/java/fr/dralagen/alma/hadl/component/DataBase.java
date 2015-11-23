@@ -9,6 +9,7 @@ import fr.dralagen.alma.hadl.port.SecurityManagement;
  * @author dralagen
  */
 public class DataBase extends AtomicComponent {
+    
     private QueryD query;
     private SecurityManagement securityManagement;
 

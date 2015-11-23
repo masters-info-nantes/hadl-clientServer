@@ -11,6 +11,7 @@ import fr.dralagen.alma.hadl.port.SecurityCheck;
  * @author dralagen
  */
 public class ClearanceRequest extends Connector {
+
     private SecurityCheck securityCheck;
     private SecurityAuthentication authentication;
 

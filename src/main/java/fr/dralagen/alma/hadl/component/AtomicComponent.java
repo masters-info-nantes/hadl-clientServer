@@ -5,5 +5,8 @@ package fr.dralagen.alma.hadl.component;
  *
  * @author dralagen
  */
-public abstract class AtomicComponent implements Configuration {
+public abstract class AtomicComponent extends Component {
+
+
+
 }

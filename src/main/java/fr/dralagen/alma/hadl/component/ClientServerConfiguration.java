@@ -7,24 +7,18 @@ import fr.dralagen.alma.hadl.connector.RPC;
  *
  * @author dralagen
  */
-public class ClientServerConfiguration implements Configuration {
-
-    private RPC rpc;
-    private Client client;
-    private Server server;
-
-    public ClientServerConfiguration(Client client, Server server) {
-        this.client = client;
-        this.server = server;
-
-        rpc = new RPC(client.getRequest(), server.getRequest());
-
-    }
+public class ClientServerConfiguration extends Configuration {
 
     public static void main(String[] args) {
 
         Client client = new Client();
-        ClientServerConfiguration clientServer = new ClientServerConfiguration(client, new Server());
+        Server server = new Server();
+
+        ClientServerConfiguration clientServer = new ClientServerConfiguration();
+        clientServer.addComponent(client);
+        clientServer.addComponent(server);
+        clientServer.addConnector(new RPC(client.getRequest(), server.getRequest()));
+
         System.out.println("main : " + client.executeRequest("koin"));
     }
 }

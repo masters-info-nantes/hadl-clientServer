@@ -29,4 +29,9 @@ public class Connector implements Observer {
                 System.out.println(response);
             }
     }
+
+    public void glue(Object arg){
+
+    }
+
 }

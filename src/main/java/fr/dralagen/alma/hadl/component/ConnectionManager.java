@@ -10,6 +10,7 @@ import fr.dralagen.alma.hadl.port.ExternalSocket;
  * @author dralagen
  */
 public class ConnectionManager extends AtomicComponent {
+
     private ExternalSocket socket;
     private SecurityCheck securiyCheck;
     private DBQuery query;
