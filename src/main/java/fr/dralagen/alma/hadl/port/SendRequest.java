@@ -15,7 +15,7 @@ public class SendRequest extends RequiredPort {
         return response;
     }
 
-    public synchronized Object receive(Object arg) {
+    public Object receive(Object arg) {
         response = (String) arg;
         return response;
     }
