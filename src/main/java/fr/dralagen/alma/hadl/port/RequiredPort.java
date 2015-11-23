@@ -9,8 +9,17 @@ import java.util.Observable;
  */
 public abstract class RequiredPort extends Observable implements Port {
 
+    String response;
+    public String sendRequest(String req) {
+        setChanged();
+        notifyObservers(req);
+
+        return response;
+    }
+
     public Object receive(Object arg) {
-        return null;
+        response = (String) arg;
+        return response;
     }
 
 }

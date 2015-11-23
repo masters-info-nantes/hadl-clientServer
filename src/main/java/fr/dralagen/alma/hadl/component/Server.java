@@ -1,15 +1,17 @@
 package fr.dralagen.alma.hadl.component;
 
 import fr.dralagen.alma.hadl.binding.ServerConfigurationBinding;
-import fr.dralagen.alma.hadl.component.Component;
 import fr.dralagen.alma.hadl.port.ReceiveRequest;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created on 10/5/15.
  *
  * @author dralagen
  */
-public class Server extends Component {
+public class Server extends Component implements Observer {
 
     private ReceiveRequest request;
 
@@ -17,6 +19,7 @@ public class Server extends Component {
 
     public Server() {
         request = new ReceiveRequest();
+        request.addObserver(this);
         binding = new ServerConfigurationBinding();
     }
 
@@ -26,5 +29,13 @@ public class Server extends Component {
 
     public ServerConfigurationBinding getBinding() {
         return binding;
+    }
+
+
+    public void update(Observable o, Object arg) {
+
+        if (o == request) {
+            request.setResponse("koin");
+        }
     }
 }
