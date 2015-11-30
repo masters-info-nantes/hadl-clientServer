@@ -1,6 +1,7 @@
 package fr.dralagen.alma.hadl.component;
 
 import fr.dralagen.alma.hadl.binding.ServerConfigurationBinding;
+import fr.dralagen.alma.hadl.port.ProvidedPort;
 import fr.dralagen.alma.hadl.port.ReceiveRequest;
 
 import java.util.Observable;
@@ -13,18 +14,17 @@ import java.util.Observer;
  */
 public class Server extends Component implements Observer {
 
-    private ReceiveRequest request;
-
     private ServerConfigurationBinding binding;
 
     public Server() {
-        request = new ReceiveRequest();
+        ProvidedPort request = new ReceiveRequest();
         request.addObserver(this);
+        addProvidedPort("receiveRequest", request);
         binding = new ServerConfigurationBinding();
     }
 
-    public ReceiveRequest getRequest() {
-        return request;
+    public ProvidedPort getRequest() {
+        return providedPort.get("receiveRequest");
     }
 
     public ServerConfigurationBinding getBinding() {
@@ -33,6 +33,7 @@ public class Server extends Component implements Observer {
 
 
     public void update(Observable o, Object arg) {
+        ProvidedPort request = providedPort.get("receiveRequest");
 
         if (o == request) {
             request.setResponse("koin");

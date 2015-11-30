@@ -1,5 +1,6 @@
 package fr.dralagen.alma.hadl.component;
 
+import fr.dralagen.alma.hadl.port.RequiredPort;
 import fr.dralagen.alma.hadl.port.SendRequest;
 
 /**
@@ -9,17 +10,15 @@ import fr.dralagen.alma.hadl.port.SendRequest;
  */
 public class Client extends AtomicComponent {
 
-    private SendRequest request;
-
     public Client() {
-        this.request = new SendRequest();
+        addRequiredPort("sendRequest", new SendRequest());
     }
 
-    public SendRequest getRequest() {
-        return request;
+    public RequiredPort getRequest() {
+        return requiredPort.get("sendRequest");
     }
 
     public String executeRequest(String req) {
-        return request.sendRequest(req);
+        return requiredPort.get("sendRequest").sendRequest(req);
     }
 }

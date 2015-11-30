@@ -7,5 +7,4 @@ package fr.dralagen.alma.hadl.port;
  */
 public class ReceiveRequest extends ProvidedPort {
 
-
 }

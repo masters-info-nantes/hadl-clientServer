@@ -11,8 +11,6 @@ import fr.dralagen.alma.hadl.port.SecurityManagement;
  * @author dralagen
  */
 public class SecurityQuery extends Connector {
-    private SecurityManagement securityManagement;
-    private CheckQuery checkQuery;
 
     public SecurityQuery(RequiredPort from, ProvidedPort to) {
         super(from, to);
