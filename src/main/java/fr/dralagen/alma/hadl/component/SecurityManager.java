@@ -4,6 +4,10 @@ import fr.dralagen.alma.hadl.port.CheckQuery;
 import fr.dralagen.alma.hadl.port.ProvidedPort;
 import fr.dralagen.alma.hadl.port.RequiredPort;
 import fr.dralagen.alma.hadl.port.SecurityAuthentication;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import java.util.Observable;
 
 /**
  * Created on 10/5/15.
@@ -12,16 +16,25 @@ import fr.dralagen.alma.hadl.port.SecurityAuthentication;
  */
 public class SecurityManager extends AtomicComponent {
 
-    public SecurityManager() {
-        SecurityAuthentication auth = new SecurityAuthentication();
-        addProvidedPort("SecurityAuth", auth);
+    private static final Logger log = LogManager.getLogger(SecurityManager.class);
 
+    public SecurityManager() {
+        log.debug("Add Port : SecurityAuthentication");
+        SecurityAuthentication auth = new SecurityAuthentication();
+        addProvidedPort("SecurityAuthentication", auth);
+
+        log.debug("Add Port : CheckQuery");
         CheckQuery checkQuery = new CheckQuery();
         addRequiredPort("CheckQuery", checkQuery);
     }
 
-    public ProvidedPort getSecurityAuth() {
-        return providedPort.get("SecurityAuth");
+    @Override
+    public void update(Observable o, Object arg) {
+
+    }
+
+    public ProvidedPort getSecurityAuthentication() {
+        return providedPort.get("SecurityAuthentication");
     }
 
     public RequiredPort getCheckQuery() {

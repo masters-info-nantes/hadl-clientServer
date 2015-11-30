@@ -4,17 +4,14 @@ import fr.dralagen.alma.hadl.connector.Connector;
 import fr.dralagen.alma.hadl.port.ProvidedPort;
 import fr.dralagen.alma.hadl.port.RequiredPort;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created on 10/5/15.
  *
  * @author dralagen
  */
-public abstract class Component {
+public abstract class Component implements Observer {
 
     protected Map<String, RequiredPort> requiredPort;
     protected Map<String, ProvidedPort> providedPort;
@@ -34,9 +31,14 @@ public abstract class Component {
 
     public void addRequiredPort(String name, RequiredPort port) {
         requiredPort.put(name, port);
+        port.addObserver(this);
     }
 
     public void addProvidedPort(String name, ProvidedPort port) {
         providedPort.put(name, port);
+        port.addObserver(this);
     }
+
+    @Override
+    public abstract void update(Observable o, Object arg);
 }

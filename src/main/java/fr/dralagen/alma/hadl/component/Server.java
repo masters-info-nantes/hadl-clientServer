@@ -18,7 +18,6 @@ public class Server extends Component implements Observer {
 
     public Server() {
         ProvidedPort request = new ReceiveRequest();
-        request.addObserver(this);
         addProvidedPort("receiveRequest", request);
         binding = new ServerConfigurationBinding();
     }

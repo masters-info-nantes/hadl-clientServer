@@ -1,5 +1,8 @@
 package fr.dralagen.alma.hadl.port;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import java.util.Observable;
 
 /**
@@ -9,9 +12,13 @@ import java.util.Observable;
  */
 public abstract class RequiredPort extends Observable implements Port {
 
+    private static final Logger log = LogManager.getLogger(RequiredPort.class);
+
     String response;
 
     public String sendRequest(String req) {
+        log.info("Transit Port : " + req);
+
         setChanged();
         notifyObservers(req);
 
@@ -19,6 +26,8 @@ public abstract class RequiredPort extends Observable implements Port {
     }
 
     public Object receive(Object arg) {
+        log.info("Response : " + arg.toString());
+
         response = (String) arg;
         return response;
     }

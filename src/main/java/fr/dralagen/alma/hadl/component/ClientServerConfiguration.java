@@ -1,6 +1,10 @@
 package fr.dralagen.alma.hadl.component;
 
 import fr.dralagen.alma.hadl.connector.RPC;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.PropertyConfigurator;
+
+import java.util.Observable;
 
 /**
  * Created on 11/16/15.
@@ -20,5 +24,10 @@ public class ClientServerConfiguration extends Configuration {
         clientServer.addConnector(new RPC(client.getRequest(), server.getRequest()));
 
         System.out.println("main : " + client.executeRequest("koin"));
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }
