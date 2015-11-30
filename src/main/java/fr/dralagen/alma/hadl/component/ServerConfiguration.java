@@ -3,7 +3,7 @@ package fr.dralagen.alma.hadl.component;
 import fr.dralagen.alma.hadl.connector.ClearanceRequest;
 import fr.dralagen.alma.hadl.connector.SecurityQuery;
 import fr.dralagen.alma.hadl.port.ProvidedPort;
-import fr.dralagen.alma.hadl.port.SQLQuery;
+import fr.dralagen.alma.hadl.connector.SQLQuery;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
