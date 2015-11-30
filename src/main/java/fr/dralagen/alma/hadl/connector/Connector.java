@@ -18,7 +18,7 @@ public class Connector implements Observer {
     private static final Logger log = LogManager.getLogger(Connector.class);
 
     private final RequiredPort from;
-    private ProvidedPort to;
+    private final ProvidedPort to;
 
     public Connector(RequiredPort from, ProvidedPort to) {
         this.to = to;

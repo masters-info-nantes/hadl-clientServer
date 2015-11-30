@@ -25,7 +25,6 @@ public class Server extends Component implements Observer {
         log.debug("Add port : receiveRequest");
         addProvidedPort("receiveRequest", request);
 
-        log.debug("Add binding : ServerConfigurationBinding");
         binding = new ServerConfigurationBinding();
     }
 
