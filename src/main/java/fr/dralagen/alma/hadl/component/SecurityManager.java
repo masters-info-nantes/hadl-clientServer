@@ -1,6 +1,8 @@
 package fr.dralagen.alma.hadl.component;
 
 import fr.dralagen.alma.hadl.port.CheckQuery;
+import fr.dralagen.alma.hadl.port.ProvidedPort;
+import fr.dralagen.alma.hadl.port.RequiredPort;
 import fr.dralagen.alma.hadl.port.SecurityAuthentication;
 
 /**
@@ -10,7 +12,19 @@ import fr.dralagen.alma.hadl.port.SecurityAuthentication;
  */
 public class SecurityManager extends AtomicComponent {
 
-    private SecurityAuthentication authentication;
-    private CheckQuery checkQuery;
+    public SecurityManager() {
+        SecurityAuthentication auth = new SecurityAuthentication();
+        addProvidedPort("SecurityAuth", auth);
 
+        CheckQuery checkQuery = new CheckQuery();
+        addRequiredPort("CheckQuery", checkQuery);
+    }
+
+    public ProvidedPort getSecurityAuth() {
+        return providedPort.get("SecurityAuth");
+    }
+
+    public RequiredPort getCheckQuery() {
+        return requiredPort.get("CheckQuery");
+    }
 }

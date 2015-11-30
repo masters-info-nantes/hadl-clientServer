@@ -1,8 +1,6 @@
 package fr.dralagen.alma.hadl.component;
 
-import fr.dralagen.alma.hadl.port.DBQuery;
-import fr.dralagen.alma.hadl.port.SecurityCheck;
-import fr.dralagen.alma.hadl.port.ExternalSocket;
+import fr.dralagen.alma.hadl.port.*;
 
 /**
  * Created on 10/5/15.
@@ -11,8 +9,22 @@ import fr.dralagen.alma.hadl.port.ExternalSocket;
  */
 public class ConnectionManager extends AtomicComponent {
 
-    private ExternalSocket socket;
-    private SecurityCheck securiyCheck;
-    private DBQuery query;
+    public ConnectionManager() {
+        addRequiredPort("SecurityCheck", new SecurityCheck());
+        addRequiredPort("DBQuery", new DBQuery());
 
+        addProvidedPort("ExternalSocket", new ExternalSocket());
+    }
+
+    public ProvidedPort getSocket() {
+        return providedPort.get("ExternalSocket");
+    }
+
+    public RequiredPort getSecuriyCheck() {
+        return requiredPort.get("SecurityCheck");
+    }
+
+    public RequiredPort getDBQuery() {
+        return requiredPort.get("DBQuery");
+    }
 }
