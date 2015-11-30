@@ -3,6 +3,8 @@ package fr.dralagen.alma.hadl.component;
 import fr.dralagen.alma.hadl.binding.ServerConfigurationBinding;
 import fr.dralagen.alma.hadl.port.ProvidedPort;
 import fr.dralagen.alma.hadl.port.ReceiveRequest;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -14,11 +16,16 @@ import java.util.Observer;
  */
 public class Server extends Component implements Observer {
 
+    private static final Logger log = LogManager.getLogger(Server.class);
+
     private ServerConfigurationBinding binding;
 
     public Server() {
         ProvidedPort request = new ReceiveRequest();
+        log.debug("Add port : receiveRequest");
         addProvidedPort("receiveRequest", request);
+
+        log.debug("Add binding : ServerConfigurationBinding");
         binding = new ServerConfigurationBinding();
     }
 
@@ -35,6 +42,7 @@ public class Server extends Component implements Observer {
         ProvidedPort request = providedPort.get("receiveRequest");
 
         if (o == request) {
+            log.info("Receive request : " + arg);
             request.setResponse("koin");
         }
     }

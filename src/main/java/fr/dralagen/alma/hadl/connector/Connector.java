@@ -2,6 +2,8 @@ package fr.dralagen.alma.hadl.connector;
 
 import fr.dralagen.alma.hadl.port.ProvidedPort;
 import fr.dralagen.alma.hadl.port.RequiredPort;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -12,6 +14,9 @@ import java.util.Observer;
  * @author dralagen
  */
 public class Connector implements Observer {
+
+    private static final Logger log = LogManager.getLogger(Connector.class);
+
     private final RequiredPort from;
     private ProvidedPort to;
 
@@ -24,9 +29,10 @@ public class Connector implements Observer {
 
     public void update(Observable o, Object arg) {
         if (o == from) {
+            log.info("Transmit From to To : " + arg);
             String response = (String) to.receive(arg);
+            log.info("Transmit To to From : " + response);
             from.receive(response);
-            System.out.println(response);
         }
     }
 
