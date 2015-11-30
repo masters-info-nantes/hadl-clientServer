@@ -19,18 +19,26 @@ public class DataBase extends AtomicComponent {
 
     public DataBase() {
 
-        log.debug("Add Port : QueryD");
+        log.debug("Add port : QueryD");
         QueryD queryD = new QueryD();
         addProvidedPort("QueryD", queryD);
 
-        log.debug("Add Port : SecurityManagement");
+        log.debug("Add port : SecurityManagement");
         SecurityManagement securityManagement = new SecurityManagement();
         addProvidedPort("SecurityManagement", securityManagement);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-
+        QueryD query = (QueryD) providedPort.get("QueryD");
+        SecurityManagement security = (SecurityManagement) providedPort.get("SecurityManagement");
+        if (o == query) {
+            log.info("Execute query");
+            query.setResponse("Response : " + arg);
+        } else if (o == security) {
+            log.info("Check security query");
+            security.setResponse(true);
+        }
     }
 
     public ProvidedPort getQueryD() {

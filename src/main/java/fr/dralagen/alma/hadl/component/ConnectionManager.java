@@ -16,15 +16,15 @@ public class ConnectionManager extends AtomicComponent {
     private static final Logger log = LogManager.getLogger(ConnectionManager.class);
 
     public ConnectionManager() {
-        log.debug("Add Port : SecurityCheck");
+        log.debug("Add port : SecurityCheck");
         SecurityCheck securityCheck = new SecurityCheck();
         addRequiredPort("SecurityCheck", securityCheck);
 
-        log.debug("Add Port : DBQuery");
+        log.debug("Add port : DBQuery");
         DBQuery dbQuery = new DBQuery();
         addRequiredPort("DBQuery", dbQuery);
 
-        log.debug("Add Port : ExternalSocket");
+        log.debug("Add port : ExternalSocket");
         ExternalSocket externalSocket = new ExternalSocket();
         addProvidedPort("ExternalSocket", externalSocket);
     }
@@ -46,9 +46,15 @@ public class ConnectionManager extends AtomicComponent {
         ProvidedPort externalSocket = getExternalSocket();
 
         if (o == externalSocket) {
-            RequiredPort requiredPort = (RequiredPort) o;
             log.info("Receive ExternalSocket");
-            requiredPort.receive(externalSocket.receive(arg));
+            SecurityCheck security = (SecurityCheck) requiredPort.get("SecurityCheck");
+            boolean access = (boolean) security.sendRequest(arg);
+            if (access) {
+                DBQuery query = (DBQuery) requiredPort.get("DBQuery");
+                externalSocket.setResponse(query.sendRequest(arg));
+            } else {
+                externalSocket.setResponse("Access denied");
+            }
         }
 
     }

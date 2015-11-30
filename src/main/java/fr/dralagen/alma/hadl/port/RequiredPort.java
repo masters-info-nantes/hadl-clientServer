@@ -14,9 +14,9 @@ public abstract class RequiredPort extends Observable implements Port {
 
     private static final Logger log = LogManager.getLogger(RequiredPort.class);
 
-    String response;
+    Object response;
 
-    public String sendRequest(String req) {
+    public Object sendRequest(Object req) {
         log.info("Transit Port : " + req);
 
         setChanged();
@@ -28,7 +28,7 @@ public abstract class RequiredPort extends Observable implements Port {
     public Object receive(Object arg) {
         log.info("Response : " + arg.toString());
 
-        response = (String) arg;
+        response = arg;
         return response;
     }
 

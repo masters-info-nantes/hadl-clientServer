@@ -1,7 +1,8 @@
 package fr.dralagen.alma.hadl.component;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created on 10/5/15.
@@ -10,13 +11,13 @@ import java.util.List;
  */
 public abstract class Configuration extends Component {
 
-    protected List<Component> componentList;
+    protected Map<String, Component> component;
 
     public Configuration() {
-        componentList = new ArrayList<Component>();
+        component = new HashMap<>();
     }
 
-    public void addComponent(Component c) {
-        componentList.add(c);
+    public void addComponent(String name, Component component) {
+        this.component.put(name, component);
     }
 }

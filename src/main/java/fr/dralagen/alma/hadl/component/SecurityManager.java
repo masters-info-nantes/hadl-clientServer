@@ -19,18 +19,23 @@ public class SecurityManager extends AtomicComponent {
     private static final Logger log = LogManager.getLogger(SecurityManager.class);
 
     public SecurityManager() {
-        log.debug("Add Port : SecurityAuthentication");
+        log.debug("Add port : SecurityAuthentication");
         SecurityAuthentication auth = new SecurityAuthentication();
         addProvidedPort("SecurityAuthentication", auth);
 
-        log.debug("Add Port : CheckQuery");
+        log.debug("Add port : CheckQuery");
         CheckQuery checkQuery = new CheckQuery();
         addRequiredPort("CheckQuery", checkQuery);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-
+        SecurityAuthentication authentication = (SecurityAuthentication) providedPort.get("SecurityAuthentication");
+        if (o == authentication) {
+            log.info("Check Security");
+            CheckQuery checkQuery = (CheckQuery) requiredPort.get("CheckQuery");
+            authentication.setResponse(checkQuery.sendRequest(arg));
+        }
     }
 
     public ProvidedPort getSecurityAuthentication() {

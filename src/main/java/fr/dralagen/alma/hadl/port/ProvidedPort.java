@@ -14,7 +14,7 @@ public class ProvidedPort extends Observable implements Port {
 
     private static final Logger log = LogManager.getLogger(ProvidedPort.class);
 
-    private String response;
+    private Object response;
 
     public Object receive(Object arg) {
         log.info("Receive : " + arg);
@@ -24,7 +24,7 @@ public class ProvidedPort extends Observable implements Port {
         return response;
     }
 
-    public void setResponse(String res) {
+    public void setResponse(Object res) {
         log.info("Response : " + res);
         response = res;
     }

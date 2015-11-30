@@ -24,9 +24,9 @@ public class ClientServerConfiguration extends Configuration {
 
         ClientServerConfiguration clientServer = new ClientServerConfiguration();
         log.debug("Add component : client");
-        clientServer.addComponent(client);
+        clientServer.addComponent("Client", client);
         log.debug("Add component : server");
-        clientServer.addComponent(server);
+        clientServer.addComponent("Server", server);
 
         log.debug("Add connector : RPC");
         clientServer.addConnector(new RPC(client.getRequest(), server.getRequest()));

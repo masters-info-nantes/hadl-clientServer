@@ -32,6 +32,6 @@ public class Client extends AtomicComponent {
 
     public String executeRequest(String req) {
         log.info("Execute request : " + req);
-        return requiredPort.get("sendRequest").sendRequest(req);
+        return (String) requiredPort.get("sendRequest").sendRequest(req);
     }
 }

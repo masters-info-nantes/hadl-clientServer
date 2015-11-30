@@ -43,7 +43,7 @@ public class Server extends Component implements Observer {
 
         if (o == request) {
             log.info("Receive request : " + arg);
-            request.setResponse("koin");
+            request.setResponse(binding.bind(arg));
         }
     }
 }

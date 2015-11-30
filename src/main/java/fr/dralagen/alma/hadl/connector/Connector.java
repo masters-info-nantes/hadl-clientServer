@@ -30,7 +30,7 @@ public class Connector implements Observer {
     public void update(Observable o, Object arg) {
         if (o == from) {
             log.info("Transmit From to To : " + arg);
-            String response = (String) to.receive(arg);
+            Object response = to.receive(arg);
             log.info("Transmit To to From : " + response);
             from.receive(response);
         }
