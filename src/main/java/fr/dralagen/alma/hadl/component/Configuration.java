@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author dralagen
  */
-public abstract class Configuration extends Component{
+public abstract class Configuration extends Component {
 
     protected List<Component> componentList;
 

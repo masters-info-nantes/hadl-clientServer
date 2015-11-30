@@ -7,6 +7,6 @@ import fr.dralagen.alma.hadl.port.ExternalSocket;
  *
  * @author dralagen
  */
-public class ServerBinding  implements Binding {
+public class ServerBinding implements Binding {
     ExternalSocket connectionManagerRequest;
 }

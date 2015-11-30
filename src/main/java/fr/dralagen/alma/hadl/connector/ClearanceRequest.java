@@ -2,8 +2,6 @@ package fr.dralagen.alma.hadl.connector;
 
 import fr.dralagen.alma.hadl.port.ProvidedPort;
 import fr.dralagen.alma.hadl.port.RequiredPort;
-import fr.dralagen.alma.hadl.port.SecurityAuthentication;
-import fr.dralagen.alma.hadl.port.SecurityCheck;
 
 /**
  * Created on 10/5/15.

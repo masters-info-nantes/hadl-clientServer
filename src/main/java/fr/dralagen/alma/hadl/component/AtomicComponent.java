@@ -7,6 +7,4 @@ package fr.dralagen.alma.hadl.component;
  */
 public abstract class AtomicComponent extends Component {
 
-
-
 }

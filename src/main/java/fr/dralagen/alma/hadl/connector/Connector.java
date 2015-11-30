@@ -12,8 +12,8 @@ import java.util.Observer;
  * @author dralagen
  */
 public class Connector implements Observer {
-    private ProvidedPort to;
     private final RequiredPort from;
+    private ProvidedPort to;
 
     public Connector(RequiredPort from, ProvidedPort to) {
         this.to = to;
@@ -23,14 +23,14 @@ public class Connector implements Observer {
     }
 
     public void update(Observable o, Object arg) {
-            if ( o == from ) {
-                String response = (String) to.receive(arg);
-                from.receive(response);
-                System.out.println(response);
-            }
+        if (o == from) {
+            String response = (String) to.receive(arg);
+            from.receive(response);
+            System.out.println(response);
+        }
     }
 
-    public void glue(Object arg){
+    public void glue(Object arg) {
 
     }
 

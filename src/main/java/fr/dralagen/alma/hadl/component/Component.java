@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * @author dralagen
  */
-public abstract class Component{
+public abstract class Component {
 
     protected Map<String, RequiredPort> requiredPort;
     protected Map<String, ProvidedPort> providedPort;
