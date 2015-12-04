@@ -41,4 +41,13 @@ public abstract class Component implements Observer {
 
     @Override
     public abstract void update(Observable o, Object arg);
+
+    public Map<String, ProvidedPort> getProvidedPort(){
+        return providedPort;
+    }
+
+    public Map<String, RequiredPort> getRequiredPort(){
+        return requiredPort;
+    }
+
 }

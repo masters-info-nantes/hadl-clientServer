@@ -1,9 +1,10 @@
 package fr.dralagen.alma.hadl.component;
 
+import fr.dralagen.alma.hadl.attachment.Attachment;
 import fr.dralagen.alma.hadl.connector.ClearanceRequest;
+import fr.dralagen.alma.hadl.connector.SQLQuery;
 import fr.dralagen.alma.hadl.connector.SecurityQuery;
 import fr.dralagen.alma.hadl.port.ProvidedPort;
-import fr.dralagen.alma.hadl.connector.SQLQuery;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -43,6 +44,15 @@ public class ServerConfiguration extends Configuration {
         log.debug("Add connector : SecurityQuery");
         SecurityQuery securityQuery = new SecurityQuery();
         addConnector(securityQuery);
+
+        new Attachment(clearanceRequest.getFirstRole(), connectionManager.getRequiredPort().get(0));
+        new Attachment(clearanceRequest.getSecondRole(), securityManager.getRequiredPort().get(0));
+
+        new Attachment(sqlQuery.getFirstRole(), connectionManager.getProvidedPort().get(0));
+        new Attachment(sqlQuery.getSecondRole(), dataBase.getRequiredPort().get(0));
+
+        new Attachment(securityQuery.getFirstRole(), dataBase.getRequiredPort().get(0));
+        new Attachment(securityQuery.getSecondRole(), securityManager.getProvidedPort().get(0));
 
     }
 
