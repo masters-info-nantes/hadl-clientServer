@@ -33,24 +33,15 @@ public class ServerConfiguration extends Configuration {
         addComponent("DataBase", dataBase);
 
         log.debug("Add connector : ClearanceRequest");
-        ClearanceRequest clearanceRequest = new ClearanceRequest(
-                connectionManager.getSecurityCheck(),
-                securityManager.getSecurityAuthentication()
-        );
+        ClearanceRequest clearanceRequest = new ClearanceRequest();
         addConnector(clearanceRequest);
 
         log.debug("Add connector : SQLQuery");
-        SQLQuery sqlQuery = new SQLQuery(
-                connectionManager.getDBQuery(),
-                dataBase.getQueryD()
-        );
+        SQLQuery sqlQuery = new SQLQuery();
         addConnector(sqlQuery);
 
         log.debug("Add connector : SecurityQuery");
-        SecurityQuery securityQuery = new SecurityQuery(
-                securityManager.getCheckQuery(),
-                dataBase.getSecurityManagement()
-        );
+        SecurityQuery securityQuery = new SecurityQuery();
         addConnector(securityQuery);
 
     }

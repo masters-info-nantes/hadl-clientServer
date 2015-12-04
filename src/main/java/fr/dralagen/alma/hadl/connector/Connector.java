@@ -1,7 +1,6 @@
 package fr.dralagen.alma.hadl.connector;
 
-import fr.dralagen.alma.hadl.port.ProvidedPort;
-import fr.dralagen.alma.hadl.port.RequiredPort;
+import fr.dralagen.alma.hadl.role.Role;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -17,27 +16,34 @@ public class Connector implements Observer {
 
     private static final Logger log = LogManager.getLogger(Connector.class);
 
-    private final RequiredPort from;
-    private final ProvidedPort to;
+    private Role[] roles;
+    private Role firstRole;
+    private Role secondRole;
 
-    public Connector(RequiredPort from, ProvidedPort to) {
-        this.to = to;
-        this.from = from;
+    public Connector() {
+        this.firstRole = new Role();
+        this.secondRole = new Role();
 
-        this.from.addObserver(this);
+        this.firstRole.addObserver(this);
+        this.secondRole.addObserver(this);
     }
 
     public void update(Observable o, Object arg) {
-        if (o == from) {
-            log.info("Transmit From to To : " + arg);
-            Object response = to.receive(arg);
-            log.info("Transmit To to From : " + response);
-            from.receive(response);
-        }
+        log.info("Transmit From to To : " + arg);
+        Object response = firstRole.receive(arg);
+        log.info("Transmit To to From : " + response);
+        secondRole.receive(response);
     }
 
     public void glue(Object arg) {
 
     }
 
+    public Role getFirstRole() {
+        return firstRole;
+    }
+
+    public Role getSecondRole(){
+        return secondRole;
+    }
 }

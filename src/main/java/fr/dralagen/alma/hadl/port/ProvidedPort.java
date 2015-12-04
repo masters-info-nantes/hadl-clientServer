@@ -10,7 +10,7 @@ import java.util.Observable;
  *
  * @author dralagen
  */
-public class ProvidedPort extends Observable implements Port {
+public class ProvidedPort extends Port {
 
     private static final Logger log = LogManager.getLogger(ProvidedPort.class);
 

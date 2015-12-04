@@ -1,10 +1,9 @@
 package fr.dralagen.alma.hadl.component;
 
+import fr.dralagen.alma.hadl.attachment.Attachment;
 import fr.dralagen.alma.hadl.connector.RPC;
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import java.util.Observable;
 
@@ -28,8 +27,10 @@ public class ClientServerConfiguration extends Configuration {
         log.debug("Add component : server");
         clientServer.addComponent("Server", server);
 
+        RPC rpc = new RPC();
+        new Attachment(rpc.getFirstRole(), client.getRequest());
+        new Attachment(rpc.getSecondRole(), server.getRequest());
         log.debug("Add connector : RPC");
-        clientServer.addConnector(new RPC(client.getRequest(), server.getRequest()));
 
         System.out.println("main : " + client.executeRequest("koin"));
     }
