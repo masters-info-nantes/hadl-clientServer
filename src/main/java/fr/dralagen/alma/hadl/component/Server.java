@@ -29,7 +29,7 @@ public class Server extends Component implements Observer {
     }
 
     public ProvidedPort getRequest() {
-        return providedPort.get("receiveRequest");
+        return getProvidedPort("receiveRequest");
     }
 
     public ServerConfigurationBinding getBinding() {
@@ -38,7 +38,7 @@ public class Server extends Component implements Observer {
 
 
     public void update(Observable o, Object arg) {
-        ProvidedPort request = providedPort.get("receiveRequest");
+        ProvidedPort request = getProvidedPort("receiveRequest");
 
         if (o == request) {
             log.info("Receive request : " + arg);

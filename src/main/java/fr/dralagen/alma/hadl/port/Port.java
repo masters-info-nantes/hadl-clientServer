@@ -9,4 +9,6 @@ import java.util.Observable;
  */
 public abstract class Port extends Observable {
     public abstract Object receive(Object arg);
+
+    public abstract void setResponse(Object response);
 }

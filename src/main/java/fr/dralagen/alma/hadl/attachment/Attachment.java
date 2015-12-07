@@ -1,7 +1,11 @@
 package fr.dralagen.alma.hadl.attachment;
 
 import fr.dralagen.alma.hadl.port.Port;
+import fr.dralagen.alma.hadl.role.CalledRole;
+import fr.dralagen.alma.hadl.role.CallerRole;
 import fr.dralagen.alma.hadl.role.Role;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -11,23 +15,34 @@ import java.util.Observer;
  */
 public class Attachment implements Observer {
 
+    private static final Logger log = LogManager.getLogger(Attachment.class);
+
     private Role role;
     private Port port;
 
     public Attachment(Role role, Port port) {
         this.role = role;
-        this.role.addObserver(this);
         this.port = port;
-        this.port.addObserver(this);
+        if (role instanceof CallerRole) {
+            this.role.addObserver(this);
+        } else {
+            this.port.addObserver(this);
+        }
     }
 
     //Check for send or receive request
     @Override
     public void update(Observable o, Object arg) {
-        if (o == role) {
-            role.receive(port.receive(arg));
-        } else if (o == port) {
-            port.receive(role.receive(arg));
+        if (o == port) {
+            log.info("Transmit Request Port to Role : " + arg);
+            Object response = role.receive(arg);
+            log.info("Transmit Response Role to Port : " + response);
+            port.setResponse(response);
+        } else if (o == role) {
+            log.info("Transmit Request Port to Role : " + arg);
+            Object response = port.receive(arg);
+            log.info("Transmit Response Role to Port : " + response);
+            role.setResponse(response);
         }
     }
 }

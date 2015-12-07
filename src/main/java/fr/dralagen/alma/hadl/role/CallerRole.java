@@ -10,5 +10,13 @@ public class CallerRole extends Role {
 
     private static final Logger log = LogManager.getLogger(CallerRole.class);
 
+    public Object receive(Object arg) {
+        log.info("Receive : " + arg);
+        setChanged();
+        notifyObservers(arg);
+
+        log.info("Response : " + response);
+        return response;
+    }
 
 }

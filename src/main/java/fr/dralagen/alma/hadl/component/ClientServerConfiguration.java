@@ -28,8 +28,8 @@ public class ClientServerConfiguration extends Configuration {
         clientServer.addComponent("Server", server);
 
         RPC rpc = new RPC();
-        new Attachment(rpc.getFirstRole(), client.getRequest());
-        new Attachment(rpc.getSecondRole(), server.getRequest());
+        new Attachment(rpc.getCalled(), client.getRequest());
+        new Attachment(rpc.getCaller(), server.getRequest());
         log.debug("Add connector : RPC");
 
         System.out.println("main : " + client.executeRequest("koin"));

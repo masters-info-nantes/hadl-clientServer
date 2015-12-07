@@ -13,10 +13,10 @@ import java.util.*;
  */
 public abstract class Component implements Observer {
 
-    protected Map<String, RequiredPort> requiredPort;
-    protected Map<String, ProvidedPort> providedPort;
+    private Map<String, RequiredPort> requiredPort;
+    private Map<String, ProvidedPort> providedPort;
 
-    protected List<Connector> connectorList;
+    private List<Connector> connectorList;
 
     public Component() {
         requiredPort = new HashMap<>();
@@ -42,12 +42,11 @@ public abstract class Component implements Observer {
     @Override
     public abstract void update(Observable o, Object arg);
 
-    public Map<String, ProvidedPort> getProvidedPort(){
-        return providedPort;
+    public ProvidedPort getProvidedPort(String name){
+        return providedPort.get(name);
     }
 
-    public Map<String, RequiredPort> getRequiredPort(){
-        return requiredPort;
+    public RequiredPort getRequiredPort(String name){
+        return requiredPort.get(name);
     }
-
 }

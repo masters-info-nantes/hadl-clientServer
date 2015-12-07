@@ -30,4 +30,8 @@ public abstract class RequiredPort extends Port {
         return response;
     }
 
+    public void setResponse(Object res) {
+        log.info("Response : " + res);
+        response = res;
+    }
 }

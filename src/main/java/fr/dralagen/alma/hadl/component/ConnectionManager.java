@@ -30,15 +30,15 @@ public class ConnectionManager extends AtomicComponent {
     }
 
     public ProvidedPort getExternalSocket() {
-        return providedPort.get("ExternalSocket");
+        return getProvidedPort("ExternalSocket");
     }
 
     public RequiredPort getSecurityCheck() {
-        return requiredPort.get("SecurityCheck");
+        return getRequiredPort("SecurityCheck");
     }
 
     public RequiredPort getDBQuery() {
-        return requiredPort.get("DBQuery");
+        return getRequiredPort("DBQuery");
     }
 
     @Override
@@ -47,12 +47,16 @@ public class ConnectionManager extends AtomicComponent {
 
         if (o == externalSocket) {
             log.info("Receive ExternalSocket");
-            SecurityCheck security = (SecurityCheck) requiredPort.get("SecurityCheck");
+            SecurityCheck security = (SecurityCheck) getRequiredPort("SecurityCheck");
             boolean access = (boolean) security.sendRequest(arg);
+            log.info("Receive Security check : " + access);
             if (access) {
-                DBQuery query = (DBQuery) requiredPort.get("DBQuery");
-                externalSocket.setResponse(query.sendRequest(arg));
+                DBQuery query = (DBQuery) getRequiredPort("DBQuery");
+                Object response = query.sendRequest(arg);
+                log.info("Return response : " + response);
+                externalSocket.setResponse(response);
             } else {
+                log.info("Return error : Access denied");
                 externalSocket.setResponse("Access denied");
             }
         }

@@ -45,14 +45,14 @@ public class ServerConfiguration extends Configuration {
         SecurityQuery securityQuery = new SecurityQuery();
         addConnector(securityQuery);
 
-        new Attachment(clearanceRequest.getFirstRole(), connectionManager.getRequiredPort().get(0));
-        new Attachment(clearanceRequest.getSecondRole(), securityManager.getRequiredPort().get(0));
+        new Attachment(clearanceRequest.getCalled(), connectionManager.getSecurityCheck());
+        new Attachment(clearanceRequest.getCaller(), securityManager.getSecurityAuthentication());
 
-        new Attachment(sqlQuery.getFirstRole(), connectionManager.getProvidedPort().get(0));
-        new Attachment(sqlQuery.getSecondRole(), dataBase.getRequiredPort().get(0));
+        new Attachment(sqlQuery.getCalled(), connectionManager.getDBQuery());
+        new Attachment(sqlQuery.getCaller(), dataBase.getQueryD());
 
-        new Attachment(securityQuery.getFirstRole(), dataBase.getRequiredPort().get(0));
-        new Attachment(securityQuery.getSecondRole(), securityManager.getProvidedPort().get(0));
+        new Attachment(securityQuery.getCalled(), securityManager.getCheckQuery());
+        new Attachment(securityQuery.getCaller(), dataBase.getSecurityManagement());
 
     }
 

@@ -30,11 +30,11 @@ public class DataBase extends AtomicComponent {
 
     @Override
     public void update(Observable o, Object arg) {
-        QueryD query = (QueryD) providedPort.get("QueryD");
-        SecurityManagement security = (SecurityManagement) providedPort.get("SecurityManagement");
+        QueryD query = (QueryD) getProvidedPort("QueryD");
+        SecurityManagement security = (SecurityManagement) getProvidedPort("SecurityManagement");
         if (o == query) {
             log.info("Execute query");
-            query.setResponse("Response : " + arg);
+            query.setResponse("Hello " + arg + "!");
         } else if (o == security) {
             log.info("Check security query");
             security.setResponse(true);
@@ -42,10 +42,10 @@ public class DataBase extends AtomicComponent {
     }
 
     public ProvidedPort getQueryD() {
-        return providedPort.get("QueryD");
+        return getProvidedPort("QueryD");
     }
 
     public ProvidedPort getSecurityManagement() {
-        return providedPort.get("SecurityManagement");
+        return getProvidedPort("SecurityManagement");
     }
 }

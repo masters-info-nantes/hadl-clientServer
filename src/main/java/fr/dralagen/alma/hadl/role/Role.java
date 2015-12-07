@@ -8,42 +8,13 @@ import java.util.Observable;
 /**
  * Created by nicolas on 11/30/15.
  */
-public class Role extends Observable {
+public abstract class Role extends Observable {
 
-    private static final Logger log = LogManager.getLogger(Role.class);
-    private Object response;
-    private boolean used;
+    protected Object response;
 
-
-    public Object receive(Object arg) {
-        log.info("Receive : " + arg);
-        setChanged();
-        notifyObservers(arg);
-
-        return response;
-    }
+    public abstract Object receive(Object arg);
 
     public void setResponse(Object res) {
-        log.info("Response : " + res);
         response = res;
-    }
-
-
-    public Object sendRequest(Object req) {
-        log.info("Transit Port : " + req);
-
-        setChanged();
-        notifyObservers(req);
-
-        return response;
-    }
-
-    public boolean isAlreadyUsed(){
-        return used;
-    }
-
-
-    public void setUsed(boolean used){
-        this.used = used;
     }
 }

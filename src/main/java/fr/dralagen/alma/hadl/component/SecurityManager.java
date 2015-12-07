@@ -30,19 +30,21 @@ public class SecurityManager extends AtomicComponent {
 
     @Override
     public void update(Observable o, Object arg) {
-        SecurityAuthentication authentication = (SecurityAuthentication) providedPort.get("SecurityAuthentication");
+        SecurityAuthentication authentication = (SecurityAuthentication) getProvidedPort("SecurityAuthentication");
         if (o == authentication) {
             log.info("Check Security");
-            CheckQuery checkQuery = (CheckQuery) requiredPort.get("CheckQuery");
-            authentication.setResponse(checkQuery.sendRequest(arg));
+            CheckQuery checkQuery = (CheckQuery) getRequiredPort("CheckQuery");
+            Object response = checkQuery.sendRequest(arg);
+            log.info("Response : " + arg);
+            authentication.setResponse(response);
         }
     }
 
     public ProvidedPort getSecurityAuthentication() {
-        return providedPort.get("SecurityAuthentication");
+        return getProvidedPort("SecurityAuthentication");
     }
 
     public RequiredPort getCheckQuery() {
-        return requiredPort.get("CheckQuery");
+        return getRequiredPort("CheckQuery");
     }
 }

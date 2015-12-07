@@ -3,8 +3,6 @@ package fr.dralagen.alma.hadl.port;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import java.util.Observable;
-
 /**
  * Created on 10/5/15.
  *
