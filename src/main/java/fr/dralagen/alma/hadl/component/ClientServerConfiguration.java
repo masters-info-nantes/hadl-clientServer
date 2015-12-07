@@ -32,7 +32,7 @@ public class ClientServerConfiguration extends Configuration {
         new Attachment(rpc.getCaller(), server.getRequest());
         log.debug("Add connector : RPC");
 
-        System.out.println("main : " + client.executeRequest("koin"));
+        System.out.println("main : " + client.executeRequest("John Smith"));
     }
 
     @Override

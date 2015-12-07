@@ -37,7 +37,11 @@ public class DataBase extends AtomicComponent {
             query.setResponse("Hello " + arg + "!");
         } else if (o == security) {
             log.info(this.getClass().getSimpleName() + ": Check security query");
-            security.setResponse(true);
+            if ("Bonjour".equals(arg)) {
+                security.setResponse(false);
+            } else {
+                security.setResponse(true);
+            }
         }
     }
 
