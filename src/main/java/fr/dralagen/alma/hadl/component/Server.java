@@ -42,7 +42,9 @@ public class Server extends Component implements Observer {
 
         if (o == request) {
             log.info(this.getClass().getSimpleName() + ": Receive request : " + arg);
-            request.setResponse(binding.bind(arg));
+            if (binding != null) {
+                request.setResponse(binding.bind(arg));
+            }
         }
     }
 }
