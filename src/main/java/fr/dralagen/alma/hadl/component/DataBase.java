@@ -33,10 +33,10 @@ public class DataBase extends AtomicComponent {
         QueryD query = (QueryD) getProvidedPort("QueryD");
         SecurityManagement security = (SecurityManagement) getProvidedPort("SecurityManagement");
         if (o == query) {
-            log.info("Execute query");
+            log.info(this.getClass().getSimpleName() + ": Execute query");
             query.setResponse("Hello " + arg + "!");
         } else if (o == security) {
-            log.info("Check security query");
+            log.info(this.getClass().getSimpleName() + ": Check security query");
             security.setResponse(true);
         }
     }

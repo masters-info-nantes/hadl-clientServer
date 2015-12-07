@@ -11,11 +11,11 @@ public class CallerRole extends Role {
     private static final Logger log = LogManager.getLogger(CallerRole.class);
 
     public Object receive(Object arg) {
-        log.info("Receive : " + arg);
+        log.info(this.getClass().getSimpleName() + ": Receive : " + arg);
         setChanged();
         notifyObservers(arg);
 
-        log.info("Response : " + response);
+        log.info(this.getClass().getSimpleName() + ": Response : " + response);
         return response;
     }
 

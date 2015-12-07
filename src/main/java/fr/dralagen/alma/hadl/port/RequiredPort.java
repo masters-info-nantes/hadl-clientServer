@@ -15,7 +15,7 @@ public abstract class RequiredPort extends Port {
     Object response;
 
     public Object sendRequest(Object req) {
-        log.info("Transit Port : " + req);
+        log.info(this.getClass().getSimpleName() + ": Transit Port : " + req);
 
         setChanged();
         notifyObservers(req);
@@ -24,14 +24,14 @@ public abstract class RequiredPort extends Port {
     }
 
     public Object receive(Object arg) {
-        log.info("Response : " + arg.toString());
+        log.info(this.getClass().getSimpleName() + ": Response : " + arg.toString());
 
         response = arg;
         return response;
     }
 
     public void setResponse(Object res) {
-        log.info("Response : " + res);
+        log.info(this.getClass().getSimpleName() + ": Response : " + res);
         response = res;
     }
 }

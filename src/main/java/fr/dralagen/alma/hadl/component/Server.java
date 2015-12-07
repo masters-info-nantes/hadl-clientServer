@@ -41,7 +41,7 @@ public class Server extends Component implements Observer {
         ProvidedPort request = getProvidedPort("receiveRequest");
 
         if (o == request) {
-            log.info("Receive request : " + arg);
+            log.info(this.getClass().getSimpleName() + ": Receive request : " + arg);
             request.setResponse(binding.bind(arg));
         }
     }

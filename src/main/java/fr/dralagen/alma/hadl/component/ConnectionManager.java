@@ -46,17 +46,17 @@ public class ConnectionManager extends AtomicComponent {
         ProvidedPort externalSocket = getExternalSocket();
 
         if (o == externalSocket) {
-            log.info("Receive ExternalSocket");
+            log.info(this.getClass().getSimpleName() + ": Receive ExternalSocket");
             SecurityCheck security = (SecurityCheck) getRequiredPort("SecurityCheck");
             boolean access = (boolean) security.sendRequest(arg);
-            log.info("Receive Security check : " + access);
+            log.info(this.getClass().getSimpleName() + ": Receive Security check : " + access);
             if (access) {
                 DBQuery query = (DBQuery) getRequiredPort("DBQuery");
                 Object response = query.sendRequest(arg);
-                log.info("Return response : " + response);
+                log.info(this.getClass().getSimpleName() + ": Return response : " + response);
                 externalSocket.setResponse(response);
             } else {
-                log.info("Return error : Access denied");
+                log.info(this.getClass().getSimpleName() + ": Return error : Access denied");
                 externalSocket.setResponse("Access denied");
             }
         }

@@ -8,14 +8,14 @@ import org.apache.log4j.Logger;
  *
  * @author dralagen
  */
-public class ProvidedPort extends Port {
+public abstract class ProvidedPort extends Port {
 
     private static final Logger log = LogManager.getLogger(ProvidedPort.class);
 
     private Object response;
 
     public Object receive(Object arg) {
-        log.info("Receive : " + arg);
+        log.info(this.getClass().getSimpleName() + ": Receive : " + arg);
         setChanged();
         notifyObservers(arg);
 
@@ -23,7 +23,7 @@ public class ProvidedPort extends Port {
     }
 
     public void setResponse(Object res) {
-        log.info("Response : " + res);
+        log.info(this.getClass().getSimpleName() + ": Response : " + res);
         response = res;
     }
 }

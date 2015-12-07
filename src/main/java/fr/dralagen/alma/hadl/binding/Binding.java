@@ -23,9 +23,9 @@ public abstract class Binding {
     }
 
     public Object bind(Object arg) {
-        log.info("Binding port : " + arg);
+        log.info(this.getClass().getSimpleName() + ": Binding port : " + arg);
         Object response = port.receive(arg);
-        log.info("Binding response : " + response);
+        log.info(this.getClass().getSimpleName() + ": Binding response : " + response);
         return response;
     }
 }

@@ -32,10 +32,10 @@ public class SecurityManager extends AtomicComponent {
     public void update(Observable o, Object arg) {
         SecurityAuthentication authentication = (SecurityAuthentication) getProvidedPort("SecurityAuthentication");
         if (o == authentication) {
-            log.info("Check Security");
+            log.info(this.getClass().getSimpleName() + ": Check Security");
             CheckQuery checkQuery = (CheckQuery) getRequiredPort("CheckQuery");
             Object response = checkQuery.sendRequest(arg);
-            log.info("Response : " + arg);
+            log.info(this.getClass().getSimpleName() + ": Response : " + arg);
             authentication.setResponse(response);
         }
     }

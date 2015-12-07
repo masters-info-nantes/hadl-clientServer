@@ -30,9 +30,9 @@ public class Connector implements Observer {
 
     public void update(Observable o, Object arg) {
         if (o == called) {
-            log.info("Transmit Request Called to Caller : " + arg);
+            log.info(this.getClass().getSimpleName() + ": Transmit Request Called to Caller : " + arg);
             Object response = caller.receive(arg);
-            log.info("Transmit Response Caller to called : " + response);
+            log.info(this.getClass().getSimpleName() + ": Transmit Response Caller to called : " + response);
             called.setResponse(response);
         }
     }

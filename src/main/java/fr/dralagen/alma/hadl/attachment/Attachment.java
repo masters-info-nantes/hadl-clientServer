@@ -1,7 +1,6 @@
 package fr.dralagen.alma.hadl.attachment;
 
 import fr.dralagen.alma.hadl.port.Port;
-import fr.dralagen.alma.hadl.role.CalledRole;
 import fr.dralagen.alma.hadl.role.CallerRole;
 import fr.dralagen.alma.hadl.role.Role;
 import org.apache.log4j.LogManager;
@@ -34,14 +33,14 @@ public class Attachment implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if (o == port) {
-            log.info("Transmit Request Port to Role : " + arg);
+            log.info(this.getClass().getSimpleName() + ": Transmit Request Port to Role : " + arg);
             Object response = role.receive(arg);
-            log.info("Transmit Response Role to Port : " + response);
+            log.info(this.getClass().getSimpleName() + ": Transmit Response Role to Port : " + response);
             port.setResponse(response);
         } else if (o == role) {
-            log.info("Transmit Request Port to Role : " + arg);
+            log.info(this.getClass().getSimpleName() + ": Transmit Request Port to Role : " + arg);
             Object response = port.receive(arg);
-            log.info("Transmit Response Role to Port : " + response);
+            log.info(this.getClass().getSimpleName() + ": Transmit Response Role to Port : " + response);
             role.setResponse(response);
         }
     }
